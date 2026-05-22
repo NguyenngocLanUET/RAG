@@ -12,18 +12,18 @@ EMBED_MODEL_NAME = "BAAI/bge-m3"
 
 
 def process_csv_to_chunks(csv_path):
-    df = pd.read_csv(csv_path)
+    # Sử dụng encoding utf-8-sig để đọc đúng định dạng tiếng Việt và BOM
+    df = pd.read_csv(csv_path, encoding='utf-8-sig')
     # Chuyển đổi mỗi dòng thành một chuỗi văn bản mô tả
     cleaned_chunks = []
     
     for idx, row in df.iterrows():
-        # Tạo chuỗi văn bản từ tất cả các cột của dòng đó
-        # Ví dụ: "Cột A: Giá trị A, Cột B: Giá trị B..."
-        row_text = ". ".join([f"{col}: {val}" for col, val in row.items() if pd.notna(val)])
+        # Tối ưu context theo step.md: Kết hợp Title và Answer
+        context_text = f"Tiêu đề: {row['Title']}\nThông tin: {row['Answer']}"
         
         cleaned_chunks.append({
-            "id": idx,
-            "text": row_text,
+            "id": row.get('ID', idx),
+            "text": context_text,
             "metadata": row.to_dict()
         })
     
@@ -94,6 +94,6 @@ def build_pipeline(raw_data_path, output_dir):
 
 if __name__ == "__main__":
     build_pipeline(
-        raw_data_path="data.csv",
+        raw_data_path="uet_qa_dataset_500_with_id.csv",
         output_dir="my_vnu_index"
     )
