@@ -3,8 +3,10 @@ import json
 import faiss
 import pandas as pd
 import numpy as np
-
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+import sys
+import os
+sys.path.append('/kaggle/working/RAG')
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
  
 
@@ -95,5 +97,5 @@ def build_pipeline(raw_data_path, output_dir):
 if __name__ == "__main__":
     build_pipeline(
         raw_data_path="uet_qa_dataset_500_with_id.csv",
-        output_dir="my_vnu_index"
+        output_dir="my_uet_index"
     )

@@ -1,24 +1,27 @@
 import torch
+from transformers import pipeline, BitsAndBytesConfig
 
-from transformers import pipeline
-
-
+import sys
+import os
+sys.path.append('/kaggle/working/RAG')
 class QAGenerator: 
 
-    def __init__(
-        self,
-        model_id="Qwen/Qwen2.5-7B-Instruct"  # Nâng cấp lên bản 7B nếu có thể
-    ):
-
+    def __init__(self, model_id="Qwen/Qwen2.5-7B-Instruct"):
         print("Loading generator model...")
+
+        # Cấu hình 4-bit chính xác
+        quantization_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4"
+        )
 
         self.pipe = pipeline(
             "text-generation",
             model=model_id,
-            device_map="auto",
             model_kwargs={
-                "torch_dtype": torch.float16,
-                "load_in_4bit": True
+                "quantization_config": quantization_config,
+                "device_map": "auto"
             }
         )
 

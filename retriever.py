@@ -1,7 +1,9 @@
 import json
 import faiss
 import numpy as np
-
+import sys
+import os
+sys.path.append('/kaggle/working/RAG')
 from sentence_transformers import (
     SentenceTransformer,
     CrossEncoder
