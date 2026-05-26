@@ -6,7 +6,7 @@ Sau khi save version để chạy và tạo kết quả tự động từ các i
 Cụ thể: sau khi chạy (1), mở (2) và add ipynb (1), sau khi chạy (2), mở (3) và add ipynb (2).
 ```
 **Các chức năng**:
-- (1) tạo dữ liệu giả (**IAA=91.5%**): 
+- (1) tạo dữ liệu giả (**IAA=91%**): 
 ```
 + Web crawling và trích xuất nội dung bài viết: requests, beautifulSoup
 + Rule-based text cleaning
