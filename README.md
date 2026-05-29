@@ -1,4 +1,4 @@
-# Hệ thống mini RAG (Retriever and Generator) sử dụng dữ liệu liên quan đến tin tức của trường Đại học công nghệ (UET)
+# Hệ thống mini RAG sử dụng dữ liệu liên quan đến tin tức của trường Đại học công nghệ (UET)
 **Tái lập kết quả**:
 ```
 Thứ tự chạy các ipynb: `generate-data`(1) -> `rag-system`(2) -> `evaluate`(3)
